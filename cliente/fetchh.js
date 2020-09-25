@@ -8,6 +8,8 @@ function exe(event) {
       const data = new FormData();
       data.append('content', document.getElementById("term").value);
 
+      
+
       fetch(
          '../servidor/clases/mensaje.php',
 
