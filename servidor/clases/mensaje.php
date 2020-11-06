@@ -1,37 +1,28 @@
 <?php
+
 session_start();
 
 if (isset($_POST['content'])) {
 
-    $msg = substr($_POST['content'], 0, 15);
-    if ($msg == '>ListarMensaje ') {
-        print_r($_SESSION['content']);
-    } else {
-        $msg = substr($_POST['content'], 0, 18);
 
-        if ($msg == '>RegistrarMensaje ') {
-            $msg_g = substr($_POST['content'], 18);
-            $_POST['content'] = $msg_g;
-            
+    $msg = substr($_POST['content'], 0, 18);
+    $msg_g = '';
+
+    if ($msg == '>RegistrarMensaje ') {
+        $msg_g = substr($_POST['content'], 18);
+
+        if (!isset($_SESSION['content'])) {
             $_SESSION['content'] = array();
-            print ($msg_g);
+        }
+        print($msg_g);
+    } else {
+
+        $msg = substr($_POST['content'], 0, 14);
+        if ($msg == '>ListarMensaje') {
+
+
+            print_r($_SESSION['content']);
         }
     }
-
-
-
-
-
-
-
-
-
-
-    //   SESSION_START();
-    //    print_r($_SESSION['term']);
-    //}
-    //else if (!isset($_POST['registrarMensaje'])){
-    //    
-    //    $_SESSION['term']=array();
-
+    $_SESSION['content'][] = $msg_g;
 }
